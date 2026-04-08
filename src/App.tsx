@@ -1,10 +1,11 @@
-import './App.css'
+import { TaskBoard } from "./features/tasks/components/TaskBoard"
 
 function App() {
   return (
-    <div>
-      <h1>TaskBoard pro</h1>
-    </div>
+    <main>
+      <h1>TaskBoard Hooks Lab</h1>
+      <TaskBoard />
+    </main>
   )
 }
 
