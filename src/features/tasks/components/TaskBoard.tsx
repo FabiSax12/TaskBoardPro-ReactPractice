@@ -34,6 +34,20 @@ export function TaskBoard() {
         setTaskText("")
     }
 
+    const handleDeleteTask = (id: Task["id"]) => {
+        dispatch({
+            type: TASK_ACTION_TYPES.DELETE_TASK,
+            payload: id,
+        })
+    }
+
+    const handleToggleCompletion = (id: Task["id"]) => {
+        dispatch({
+            type: TASK_ACTION_TYPES.TOGGLE_TASK_COMPLETION,
+            payload: id,
+        })
+    }
+
     return (
         <SectionTag>
             <HeaderTag>{TASK_UI_TEXT.BOARD_TITLE}</HeaderTag>
@@ -44,7 +58,7 @@ export function TaskBoard() {
                 onAddTask={handleAddTask}
             />
 
-            <TaskList tasks={tasks} />
+            <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} onToggleCompletion={handleToggleCompletion} />
         </SectionTag>
     )
 }

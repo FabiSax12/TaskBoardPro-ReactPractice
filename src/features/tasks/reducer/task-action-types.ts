@@ -9,7 +9,7 @@ export const TASK_ACTION_TYPES = {
 
 type TaskDeleteAction = {
     type: typeof TASK_ACTION_TYPES.DELETE_TASK;
-    payload: Pick<Task, "id">;
+    payload: Task["id"];
 }
 
 type TaskUpdateAction = {
@@ -19,7 +19,7 @@ type TaskUpdateAction = {
 
 type TaskToggleCompletionAction = {
     type: typeof TASK_ACTION_TYPES.TOGGLE_TASK_COMPLETION;
-    payload: Pick<Task, "id">;
+    payload: Task["id"];
 }
 
 type TaskAddAction = {
