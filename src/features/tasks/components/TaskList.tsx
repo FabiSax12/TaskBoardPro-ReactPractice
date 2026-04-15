@@ -1,3 +1,4 @@
+import { HTML_TAGS } from "../../../shared/constants/html-tags.constants"
 import { TASK_UI_TEXT } from "../constants/task-ui.constants"
 import type { Task } from "../types/Task"
 
@@ -6,19 +7,25 @@ interface Props {
 }
 
 export function TaskList({ tasks }: Props) {
+    const SectionTag = HTML_TAGS.SECTION;
+    const HeaderTag = HTML_TAGS.H3;
+    const ParagraphTag = HTML_TAGS.P;
+    const ListTag = HTML_TAGS.UL;
+    const ListItemTag = HTML_TAGS.LI;
+
     return (
-        <section>
-            <h3>{TASK_UI_TEXT.TASK_LIST_TITLE}</h3>
+        <SectionTag>
+            <HeaderTag>{TASK_UI_TEXT.TASK_LIST_TITLE}</HeaderTag>
 
             {tasks.length === 0 ? (
-                <p>{TASK_UI_TEXT.TASK_LIST_EMPTY}</p>
+                <ParagraphTag>{TASK_UI_TEXT.TASK_LIST_EMPTY}</ParagraphTag>
             ) : (
-                <ul>
+                <ListTag>
                     {tasks.map((task) => (
-                        <li key={task.id}>{task.title}</li>
+                        <ListItemTag key={task.id}>{task.title}</ListItemTag>
                     ))}
-                </ul>
+                </ListTag>
             )}
-        </section>
+        </SectionTag>
     )
 }
