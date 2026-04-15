@@ -1,4 +1,4 @@
-import React, { useMemo, useReducer, useState } from "react"
+import React, { useCallback, useMemo, useReducer, useState } from "react"
 import { TaskForm } from "./TaskForm"
 import { TaskList } from "./TaskList"
 import { type Task } from "../types/Task"
@@ -24,7 +24,7 @@ export function TaskBoard() {
         setTaskText(event.target.value)
     }
 
-    const handleAddTask = () => {
+    const handleAddTask = useCallback(() => {
         if (taskText.trim() === "") {
             return
         }
@@ -37,21 +37,21 @@ export function TaskBoard() {
 
         dispatch({ type: TASK_ACTION_TYPES.ADD_TASK, payload: newTask })
         setTaskText("")
-    }
+    }, [taskText]);
 
-    const handleDeleteTask = (id: Task["id"]) => {
+    const handleDeleteTask = useCallback((id: Task["id"]) => {
         dispatch({
             type: TASK_ACTION_TYPES.DELETE_TASK,
             payload: id,
         })
-    }
+    }, [])
 
-    const handleToggleCompletion = (id: Task["id"]) => {
+    const handleToggleCompletion = useCallback((id: Task["id"]) => {
         dispatch({
             type: TASK_ACTION_TYPES.TOGGLE_TASK_COMPLETION,
             payload: id,
         })
-    }
+    }, [])
 
     const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
