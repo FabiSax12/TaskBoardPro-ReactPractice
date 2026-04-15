@@ -6,6 +6,8 @@ import { TASK_UI_TEXT } from "../constants/task-ui.constants"
 import { HTML_TAGS } from "../../../shared/constants/html-tags.constants"
 import { taskReducer } from "../reducer/task.reducer"
 import { TASK_ACTION_TYPES, type TaskAction } from "../reducer/task-action-types"
+import { TaskFilters } from "./TaskFilters"
+import { TASK_STATUS, type TaskStatus } from "../constants/task-filters.constants"
 
 export function TaskBoard() {
     const SectionTag = HTML_TAGS.SECTION;
@@ -14,6 +16,9 @@ export function TaskBoard() {
 
     const [taskText, setTaskText] = useState("")
     const [tasks, dispatch] = useReducer<Task[], [TaskAction]>(taskReducer, [])
+
+    const [searchText, setSearchText] = useState("");
+    const [statusFilter, setStatusFilter] = useState<TaskStatus>(TASK_STATUS.ALL);
 
     const handleTaskTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTaskText(event.target.value)
@@ -48,6 +53,23 @@ export function TaskBoard() {
         })
     }
 
+    const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchText(e.target.value);
+    }
+
+    const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setStatusFilter(e.target.value as TaskStatus);
+    }
+
+    const filteredTasks = tasks.filter((task) => {
+        const matchesSearchText = task.title.toLowerCase().includes(searchText.toLowerCase());
+        const matchesStatusFilter =
+            statusFilter === TASK_STATUS.ALL ||
+            (statusFilter === TASK_STATUS.COMPLETED && task.completed) ||
+            (statusFilter === TASK_STATUS.INCOMPLETE && !task.completed);
+        return matchesSearchText && matchesStatusFilter;
+    })
+
     return (
         <SectionTag>
             <HeaderTag>{TASK_UI_TEXT.BOARD_TITLE}</HeaderTag>
@@ -58,7 +80,14 @@ export function TaskBoard() {
                 onAddTask={handleAddTask}
             />
 
-            <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} onToggleCompletion={handleToggleCompletion} />
+            <TaskFilters
+                searchText={searchText}
+                statusFilter={statusFilter}
+                onSearchTextChange={handleSearchTextChange}
+                onStatusFilterChange={handleStatusFilterChange}
+            />
+
+            <TaskList tasks={filteredTasks} onDeleteTask={handleDeleteTask} onToggleCompletion={handleToggleCompletion} />
         </SectionTag>
     )
 }
