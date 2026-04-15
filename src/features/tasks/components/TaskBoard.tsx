@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react"
+import React, { useMemo, useReducer, useState } from "react"
 import { TaskForm } from "./TaskForm"
 import { TaskList } from "./TaskList"
 import { type Task } from "../types/Task"
@@ -61,14 +61,14 @@ export function TaskBoard() {
         setStatusFilter(e.target.value as TaskStatus);
     }
 
-    const filteredTasks = tasks.filter((task) => {
+    const filteredTasks = useMemo(() => tasks.filter((task) => {
         const matchesSearchText = task.title.toLowerCase().includes(searchText.toLowerCase());
         const matchesStatusFilter =
             statusFilter === TASK_STATUS.ALL ||
             (statusFilter === TASK_STATUS.COMPLETED && task.completed) ||
             (statusFilter === TASK_STATUS.INCOMPLETE && !task.completed);
         return matchesSearchText && matchesStatusFilter;
-    })
+    }), [tasks, searchText, statusFilter]);
 
     return (
         <SectionTag>
