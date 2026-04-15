@@ -9,4 +9,9 @@ export const TASK_UI_TEXT = {
     TASK_STATE_COMPLETE: "Completa",
     TASK_STATE_INCOMPLETE: "Incompleta",
     DELETE_BUTTON: "Eliminar",
-}
+    FILTER_ALL: "Todas",
+    FILTER_PENDING: "Pendientes",
+    FILTER_COMPLETED: "Completadas",
+    FILTERS_TITLE: "Filtros",
+    FILTERS_SEARCH_PLACEHOLDER: "Buscar tareas...",
+} as const;
