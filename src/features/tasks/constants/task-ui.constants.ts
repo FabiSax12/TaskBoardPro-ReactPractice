@@ -6,4 +6,7 @@ export const TASK_UI_TEXT = {
     TASK_LIST_TITLE: "Lista de tareas",
     TASK_LIST_EMPTY: "No hay tareas disponibles.",
     INPUT_LABEL: "Título de la tarea",
+    TASK_STATE_COMPLETE: "Completa",
+    TASK_STATE_INCOMPLETE: "Incompleta",
+    DELETE_BUTTON: "Eliminar",
 }

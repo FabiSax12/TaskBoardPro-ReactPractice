@@ -1,4 +1,5 @@
 import { HTML_TAGS } from "../../../shared/constants/html-tags.constants";
+import { TASK_UI_TEXT } from "../constants/task-ui.constants";
 import type { Task } from "../types/Task";
 
 interface Props {
@@ -16,11 +17,11 @@ export const TaskCard = ({ onDeleteTask, onToggleCompletion, task }: Props) => {
             {task.title}
 
             <ButtonTag onClick={() => onToggleCompletion(task.id as Task["id"])}>
-                {task.completed ? "Incompleta" : "Completa"}
+                {task.completed ? TASK_UI_TEXT.TASK_STATE_COMPLETE : TASK_UI_TEXT.TASK_STATE_INCOMPLETE}
             </ButtonTag>
 
             <ButtonTag onClick={() => onDeleteTask(task.id)}>
-                Eliminar
+                {TASK_UI_TEXT.DELETE_BUTTON}
             </ButtonTag>
         </ListItemTag>
     )
