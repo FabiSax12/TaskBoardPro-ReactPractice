@@ -5,4 +5,5 @@ export const TASK_UI_TEXT = {
     ADD_BUTTON: "Agregar tarea",
     TASK_LIST_TITLE: "Lista de tareas",
     TASK_LIST_EMPTY: "No hay tareas disponibles.",
+    INPUT_LABEL: "Título de la tarea",
 }
