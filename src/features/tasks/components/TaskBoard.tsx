@@ -2,6 +2,7 @@ import { useState } from "react"
 import { TaskForm } from "./TaskForm"
 import { TaskList } from "./TaskList"
 import { type Task } from "../types/Task"
+import { TASK_UI_TEXT } from "../constants/task-ui.constants"
 
 export function TaskBoard() {
     const [taskText, setTaskText] = useState("")
@@ -28,7 +29,7 @@ export function TaskBoard() {
 
     return (
         <section>
-            <h2>Gestión de tareas</h2>
+            <h2>{TASK_UI_TEXT.BOARD_TITLE}</h2>
 
             <TaskForm
                 taskText={taskText}
