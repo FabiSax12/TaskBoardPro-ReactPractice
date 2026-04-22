@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import type { Theme } from "../types/themes.type";
 import { ThemeContext } from "./ThemeContext";
 import { THEMES } from "../constants/themes";
@@ -20,6 +20,14 @@ export const ThemeProvider = ({ children, defaultTheme = THEMES.LIGHT }: Props) 
             return THEMES.LIGHT;
         });
     };
+
+    // useEffect(() => {
+    //     document.documentElement.classList.add(theme);
+
+    //     return () => {
+    //         document.documentElement.classList.remove(theme);
+    //     };
+    // }, [theme])
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
