@@ -5,12 +5,12 @@ import { THEMES } from "../constants/themes";
 
 interface Props {
     children: React.ReactNode;
-    defaultTheme: Theme;
+    defaultTheme?: Theme;
 }
 
-export const ThemeProvider = ({ children, defaultTheme }: Props) => {
+export const ThemeProvider = ({ children, defaultTheme = THEMES.LIGHT }: Props) => {
 
-    const [theme, setTheme] = React.useState<Theme>(defaultTheme ?? THEMES.LIGHT);
+    const [theme, setTheme] = React.useState<Theme>(defaultTheme);
 
     const toggleTheme = () => {
         setTheme((prevTheme) => {
